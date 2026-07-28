@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="locked">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -99,31 +99,10 @@
   footer { margin-top:clamp(52px,8vh,88px); border-top:1px solid var(--hair); padding-top:16px;
            font-size:12.5px; color:var(--muted); display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
   footer a { font-size:12.5px; font-weight:500; border-bottom-width:1px; }
-
-  /* the gate: the old holding page, kept exactly as it was.
-     the site behind it appears when someone presses ; (or taps the mark) */
-  html.locked, html.locked body { overflow:hidden; height:100%; }
-  html.locked .page { visibility:hidden; }
-  html:not(.locked) .gate { display:none; }
-  .gate { position:fixed; inset:0; z-index:999; cursor:default;
-          background:radial-gradient(circle at 50% 40%, #ffffff 0%, #e6e6e6 100%);
-          display:flex; align-items:center; justify-content:center; transition:opacity .4s ease; }
-  .gate .mark { font-family:"EB Garamond", Georgia, serif; font-style:normal; font-weight:400;
-                color:#191919; font-size:clamp(1.5rem, 5vw, 3.5rem); line-height:1;
-                -webkit-user-select:none; user-select:none; }
-  .gate.out { opacity:0; pointer-events:none; }
-  @media (prefers-reduced-motion:reduce){ .gate { transition:none; } }
 </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='72' font-family='EB Garamond, serif' font-size='90' text-anchor='middle' fill='%23191919'%3E;%3C/text%3E%3C/svg%3E">
-  <noscript><style>html.locked .page { visibility:visible; } .gate { display:none; }</style></noscript>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='72' font-family='EB Garamond, Georgia, serif' font-size='90' text-anchor='middle' fill='%239E2B25'%3E;%3C/text%3E%3C/svg%3E">
 </head>
 <body>
-<div class="gate" id="gate" role="button" tabindex="0" aria-label="Enter">
-  <span class="mark">;</span>
-</div>
 <a class="skip" href="#sources">Skip to what we read</a>
 <div class="page">
 
@@ -202,21 +181,5 @@
   </footer>
 
 </div>
-<script>
-(function () {
-  var KEY = 'semicolon-open', root = document.documentElement, gate = document.getElementById('gate');
-  function open() {
-    try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
-    root.classList.remove('locked');
-    gate.classList.add('out');
-    setTimeout(function () { if (gate.parentNode) gate.parentNode.removeChild(gate); }, 400);
-  }
-  try { if (sessionStorage.getItem(KEY) === '1') { root.classList.remove('locked');
-        if (gate.parentNode) gate.parentNode.removeChild(gate); return; } } catch (e) {}
-  addEventListener('keydown', function (e) { if (e.key === ';') open(); });
-  gate.addEventListener('click', open);
-  gate.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
-})();
-</script>
 </body>
 </html>
