@@ -1,60 +1,222 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="locked">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>;</title>
-  <meta name="description" content="semicolon" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>semicolon; a pakistani research collective</title>
+<meta name="description" content="We measure Pakistan's information system and trace how power moves through it.">
+<style>
+  @font-face { font-family:'Franklin'; src:url('fonts/franklin-400.woff2') format('woff2'); font-weight:400; font-display:swap; }
+  @font-face { font-family:'Franklin'; src:url('fonts/franklin-500.woff2') format('woff2'); font-weight:500; font-display:swap; }
+  @font-face { font-family:'Franklin'; src:url('fonts/franklin-600.woff2') format('woff2'); font-weight:600; font-display:swap; }
+  @font-face { font-family:'Franklin'; src:url('fonts/franklin-800.woff2') format('woff2'); font-weight:800; font-display:swap; }
+  @font-face { font-family:'Franklin'; src:url('fonts/franklin-italic.woff2') format('woff2'); font-weight:100 900; font-style:italic; font-display:swap; }
+  @font-face { font-family:'Inter'; src:url('fonts/inter-400.woff2') format('woff2'); font-weight:400; font-display:swap; }
+  @font-face { font-family:'Inter'; src:url('fonts/inter-500.woff2') format('woff2'); font-weight:500; font-display:swap; }
+  @font-face { font-family:'Inter'; src:url('fonts/inter-600.woff2') format('woff2'); font-weight:600; font-display:swap; }
+  @font-face { font-family:'InterTight'; src:url('fonts/intertight-500.woff2') format('woff2'); font-weight:500; font-display:swap; }
+  @font-face { font-family:'InterTight'; src:url('fonts/intertight-600.woff2') format('woff2'); font-weight:600; font-display:swap; }
 
-  <!-- Semicolon favicon -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='72' font-family='EB Garamond, serif' font-size='90' text-anchor='middle' fill='%23191919'%3E;%3C/text%3E%3C/svg%3E" />
+  :root {
+    --ground:#FFFFFF; --ink:#2B2A27; --muted:rgba(43,42,39,.5); --faint:rgba(43,42,39,.32); --hair:rgba(43,42,39,.14);
+    --lal:#9E2B25; --lal-hover:#7E1F1A; --lal-deep:#701E19;
+    --marigold:#E0A93C; --marigold-rgb:224,169,60; --field:#F2DEB0; --wash:#FBF6EC;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { background:var(--ground); color:var(--ink); font:400 16px/1.6 'Inter', system-ui, sans-serif;
+         -webkit-font-smoothing:antialiased; }
+  .page { max-width:880px; margin:0 auto; padding:0 clamp(22px,4vw,48px) 64px; }
+  a { color:var(--lal); text-decoration:none; border-bottom:2px solid var(--lal); padding-bottom:1px; font-weight:600; }
+  a:hover { color:var(--lal-hover); border-bottom-color:var(--lal-hover); }
+  :focus-visible { outline:3px solid var(--marigold); outline-offset:3px; }
+  .skip { position:absolute; left:-9999px; }
+  .skip:focus { position:static; display:inline-block; margin:10px 0; }
 
-  <!-- EB Garamond -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet" />
+  /* masthead: descriptor in the wordmark's case, rule at the content width */
+  header { text-align:center; padding-top:34px; }
+  .wm { font:800 clamp(34px,4.4vw,54px)/1 'Franklin'; font-style:italic; letter-spacing:-.022em;
+        color:var(--lal); border:none; position:relative; display:inline-block; padding:0 .12em; }
+  .wm:hover { color:var(--lal); }
+  .wm::before { content:""; position:absolute; left:-.04em; right:-.06em; top:26%; bottom:4%; z-index:0;
+        background:linear-gradient(90deg, rgba(var(--marigold-rgb),0) 0%, rgba(var(--marigold-rgb),.92) 3%,
+                   rgba(var(--marigold-rgb),.82) 55%, rgba(var(--marigold-rgb),.95) 88%, rgba(var(--marigold-rgb),0) 100%);
+        transform:rotate(-.7deg); }
+  .wm b { position:relative; z-index:1; font-weight:inherit; }
+  .wm i { font-style:normal; }
+  .tag { margin-top:10px; font:500 15.5px/1.4 'Franklin'; color:var(--ink); }
+  .rule { margin:22px 0 0; border-top:2px solid var(--ink); }
+  nav { margin-top:16px; display:flex; justify-content:center; gap:30px; flex-wrap:wrap; }
+  nav a { font:400 15px/1 'Franklin'; color:var(--muted); border-bottom:1.5px solid transparent; padding-bottom:3px; font-weight:400; }
+  nav a:hover { color:var(--ink); border-bottom-color:var(--ink); }
+  nav a[aria-current] { color:var(--ink); border-bottom-color:var(--ink); }
+  nav a.join { color:var(--lal); font-weight:600; border-bottom-color:rgba(158,43,37,.35); }
+  nav a.join:hover { border-bottom-color:var(--lal); }
 
-  <style>
-    :root {
-      --ink: #191919;
-    }
+  /* hero */
+  .hero { margin-top:clamp(32px,5vh,52px); display:grid;
+          grid-template-columns:minmax(0,1fr) minmax(0,440px);
+          gap:clamp(20px,3.5vw,40px); align-items:end; }
+  .questions { display:grid; gap:16px; }
+  .questions p { font:500 clamp(20px,2.5vw,27px)/1.35 'InterTight'; letter-spacing:-.012em;
+                 color:var(--muted); max-width:22ch; }
+  .answer { background:var(--field); border-radius:3px; padding:clamp(20px,2.6vw,28px); }
+  .answer h1 { font:600 clamp(19px,2.3vw,24px)/1.42 'InterTight'; letter-spacing:-.012em;
+               color:var(--lal-deep); text-shadow:0 1px 0 rgba(255,255,255,.5); }
+  .answer h1 a { color:var(--lal); border-bottom:2px solid var(--lal); text-shadow:none; font-weight:600; }
+  .answer h1 a:hover { color:var(--lal-hover); border-bottom-color:var(--lal-hover); }
+  .answer > a { display:inline-block; margin-top:16px; font-size:14.5px; }
+  @media (max-width:760px){
+    .hero { grid-template-columns:1fr; }
+    .answer { max-width:520px; margin-left:auto; }
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  /* the source buttons: boxes that invite a click */
+  .sources { margin-top:clamp(40px,6vh,64px); }
+  .cards { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+  .card { display:flex; flex-direction:column; border:1px solid var(--hair); border-radius:3px;
+          padding:15px 15px 13px; color:var(--ink); font-weight:400; text-decoration:none;
+          background:#fff; transition:background .12s ease, border-color .12s ease, transform .12s ease; }
+  .card:hover { background:var(--wash); border-color:var(--marigold); color:var(--ink); transform:translateY(-1px); }
+  .card svg { display:block; margin-bottom:11px; color:var(--faint); }
+  .card:hover svg { color:var(--lal); }
+  .card b { display:block; font:600 13.5px/1.3 'Inter'; margin-bottom:7px; }
+  .card p { font:500 14.5px/1.5 'InterTight'; color:var(--muted); }
+  .card .go { margin-top:auto; padding-top:12px; font:600 13px/1 'Franklin'; color:var(--faint);
+              display:flex; justify-content:flex-end; transition:color .12s ease, transform .12s ease; }
+  .card:hover .go { color:var(--lal); transform:translateX(2px); }
+  @media (max-width:900px){ .cards { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .cards { grid-template-columns:1fr; } }
 
-    html,
-    body {
-      height: 100%;
-    }
+  /* join */
+  .join-block { margin-top:clamp(44px,7vh,72px); background:var(--wash); border-radius:3px;
+                padding:clamp(20px,2.6vw,28px); display:flex; gap:18px; align-items:baseline;
+                justify-content:space-between; flex-wrap:wrap; }
+  .join-block p { font:500 clamp(17px,1.9vw,19px)/1.45 'InterTight'; letter-spacing:-.008em; max-width:48ch; }
+  .join-block a { font-size:15px; white-space:nowrap; }
 
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      /* white → grey */
-      background: radial-gradient(circle at 50% 40%, #ffffff 0%, #e6e6e6 100%);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+  footer { margin-top:clamp(52px,8vh,88px); border-top:1px solid var(--hair); padding-top:16px;
+           font-size:12.5px; color:var(--muted); display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+  footer a { font-size:12.5px; font-weight:500; border-bottom-width:1px; }
 
-    .mark {
-      font-family: "EB Garamond", serif;
-      font-style: normal;
-      font-weight: 400;
-      color: var(--ink);
-      font-size: clamp(1.5rem, 5vw, 3.5rem);
-      line-height: 1;
-      user-select: none;
-    }
-  </style>
+  /* the gate: the old holding page, kept exactly as it was.
+     the site behind it appears when someone presses ; (or taps the mark) */
+  html.locked, html.locked body { overflow:hidden; height:100%; }
+  html.locked .page { visibility:hidden; }
+  html:not(.locked) .gate { display:none; }
+  .gate { position:fixed; inset:0; z-index:999; cursor:default;
+          background:radial-gradient(circle at 50% 40%, #ffffff 0%, #e6e6e6 100%);
+          display:flex; align-items:center; justify-content:center; transition:opacity .4s ease; }
+  .gate .mark { font-family:"EB Garamond", Georgia, serif; font-style:normal; font-weight:400;
+                color:#191919; font-size:clamp(1.5rem, 5vw, 3.5rem); line-height:1;
+                -webkit-user-select:none; user-select:none; }
+  .gate.out { opacity:0; pointer-events:none; }
+  @media (prefers-reduced-motion:reduce){ .gate { transition:none; } }
+</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='72' font-family='EB Garamond, serif' font-size='90' text-anchor='middle' fill='%23191919'%3E;%3C/text%3E%3C/svg%3E">
+  <noscript><style>html.locked .page { visibility:visible; } .gate { display:none; }</style></noscript>
 </head>
 <body>
+<div class="gate" id="gate" role="button" tabindex="0" aria-label="Enter">
+  <span class="mark">;</span>
+</div>
+<a class="skip" href="#sources">Skip to what we read</a>
+<div class="page">
+
+  <header>
+    <a class="wm" href="index.html"><b>semicolon<i>;</i></b></a>
+    <p class="tag">a pakistani research collective</p>
+    <div class="rule"></div>
+    <nav>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="about.html">About</a>
+      <a href="#">Work</a>
+      <a class="join" href="#join">Join us</a>
+    </nav>
+  </header>
+
   <main>
-    <span class="mark">;</span>
+    <div class="hero">
+      <div class="questions">
+        <p>How do we know what is happening?</p>
+        <p>Who decides what we hear?</p>
+        <p>What does power want us to think?</p>
+      </div>
+      <div class="answer">
+        <h1>We measure Pakistan's <a href="#sources">information system</a> and trace how power moves through it.</h1>
+        <a href="about.html">How we work</a>
+      </div>
+    </div>
+
+    <div class="sources" id="sources">
+      <div class="cards">
+        <a class="card" href="#">
+          <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="1" y="1" width="24" height="15"/><path d="M9 21l4-5 4 5"/>
+          </svg>
+          <b>TV news</b><p>What did the nine o'clock bulletin choose to say?</p><span class="go">&#8594;</span>
+        </a>
+        <a class="card" href="#">
+          <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M1 1h16v11H6l-5 4z"/><path d="M21 6h4v11l-4-3"/>
+          </svg>
+          <b>Social media</b><p>What spreads before anyone can check it?</p><span class="go">&#8594;</span>
+        </a>
+        <a class="card" href="#">
+          <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M1 1h18v20H1z"/><path d="M19 6h6v15h-6"/><path d="M5 6h10M5 10h10M5 14h10"/>
+          </svg>
+          <b>Newspapers</b><p>What made the front page, and what never did?</p><span class="go">&#8594;</span>
+        </a>
+        <a class="card" href="#">
+          <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="1" y="3" width="6" height="18"/><rect x="9" y="1" width="6" height="20"/><rect x="17" y="5" width="6" height="16"/>
+          </svg>
+          <b>Books</b><p>What are children taught to believe?</p><span class="go">&#8594;</span>
+        </a>
+        <a class="card" href="#">
+          <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="4" cy="5" r="1.6"/><circle cx="11" cy="5" r="1.6"/><circle cx="18" cy="5" r="1.6"/>
+            <circle cx="4" cy="12" r="1.6"/><circle cx="11" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/>
+            <path d="M1 19h24"/>
+          </svg>
+          <b>Parliament debates</b><p>What does power say in its own words?</p><span class="go">&#8594;</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="join-block" id="join">
+      <p>This is a small collective, and it is meant to be joined. If you want to work on any of this, write to us.</p>
+      <a href="mailto:hello@semicolon.pk">Join us</a>
+    </div>
   </main>
+
+  <footer>
+    <span>semicolon; · semicolon.pk · draft</span>
+    <a href="about.html">about</a>
+    
+  </footer>
+
+</div>
+<script>
+(function () {
+  var KEY = 'semicolon-open', root = document.documentElement, gate = document.getElementById('gate');
+  function open() {
+    try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    root.classList.remove('locked');
+    gate.classList.add('out');
+    setTimeout(function () { if (gate.parentNode) gate.parentNode.removeChild(gate); }, 400);
+  }
+  try { if (sessionStorage.getItem(KEY) === '1') { root.classList.remove('locked');
+        if (gate.parentNode) gate.parentNode.removeChild(gate); return; } } catch (e) {}
+  addEventListener('keydown', function (e) { if (e.key === ';') open(); });
+  gate.addEventListener('click', open);
+  gate.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+})();
+</script>
 </body>
 </html>

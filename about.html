@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en" class="locked">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>About · semicolon;</title>
+<style>
+  @font-face { font-family:'Franklin'; src:url('fonts/franklin-400.woff2') format('woff2'); font-weight:400; font-display:swap; }
+  @font-face { font-family:'Franklin'; src:url('fonts/franklin-500.woff2') format('woff2'); font-weight:500; font-display:swap; }
+  @font-face { font-family:'Franklin'; src:url('fonts/franklin-600.woff2') format('woff2'); font-weight:600; font-display:swap; }
+  @font-face { font-family:'Franklin'; src:url('fonts/franklin-800.woff2') format('woff2'); font-weight:800; font-display:swap; }
+  @font-face { font-family:'Franklin'; src:url('fonts/franklin-italic.woff2') format('woff2'); font-weight:100 900; font-style:italic; font-display:swap; }
+  @font-face { font-family:'Inter'; src:url('fonts/inter-400.woff2') format('woff2'); font-weight:400; font-display:swap; }
+  @font-face { font-family:'Inter'; src:url('fonts/inter-500.woff2') format('woff2'); font-weight:500; font-display:swap; }
+  @font-face { font-family:'Inter'; src:url('fonts/inter-600.woff2') format('woff2'); font-weight:600; font-display:swap; }
+  @font-face { font-family:'InterTight'; src:url('fonts/intertight-500.woff2') format('woff2'); font-weight:500; font-display:swap; }
+  @font-face { font-family:'InterTight'; src:url('fonts/intertight-600.woff2') format('woff2'); font-weight:600; font-display:swap; }
+
+  :root {
+    --wash:#FBF6EC;
+    --ground:#FFFFFF; --ink:#2B2A27; --muted:rgba(43,42,39,.5); --faint:rgba(43,42,39,.32); --hair:rgba(43,42,39,.14);
+    --lal:#9E2B25; --lal-hover:#7E1F1A; --lal-deep:#701E19;
+    --marigold:#E0A93C; --marigold-rgb:224,169,60; --field:#F2DEB0;
+    --gutter:clamp(78px,10vw,132px);   /* the locked offset */
+    --c1:#9E2B25; --c2:#E0A93C; --c3:#3D52B8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font:400 16px/1.65 'Inter', system-ui, sans-serif;
+         -webkit-font-smoothing:antialiased; }
+  .page { max-width:880px; margin:0 auto; padding:0 clamp(22px,4vw,48px) 64px; }
+  a { color:var(--lal); text-decoration:none; border-bottom:2px solid var(--lal); padding-bottom:1px; font-weight:600; }
+  a:hover { color:var(--lal-hover); border-bottom-color:var(--lal-hover); }
+  :focus-visible { outline:3px solid var(--marigold); outline-offset:3px; }
+
+  header { text-align:center; padding-top:34px; }
+  .wm { font:800 clamp(30px,3.6vw,44px)/1 'Franklin'; font-style:italic; letter-spacing:-.022em;
+        color:var(--lal); border:none; position:relative; display:inline-block; padding:0 .12em; }
+  .wm::before { content:""; position:absolute; left:-.04em; right:-.06em; top:26%; bottom:4%; z-index:0;
+        background:linear-gradient(90deg, rgba(var(--marigold-rgb),0) 0%, rgba(var(--marigold-rgb),.92) 3%,
+                   rgba(var(--marigold-rgb),.82) 55%, rgba(var(--marigold-rgb),.95) 88%, rgba(var(--marigold-rgb),0) 100%);
+        transform:rotate(-.7deg); }
+  .wm b { position:relative; z-index:1; font-weight:inherit; }
+  .wm i { font-style:normal; }
+  .tag { margin-top:10px; font:500 15.5px/1.4 'Franklin'; color:var(--ink); }
+  .rule { margin:22px 0 0; border-top:2px solid var(--ink); }
+  nav { margin-top:16px; display:flex; justify-content:center; gap:30px; flex-wrap:wrap; }
+  nav a { font:400 15px/1 'Franklin'; color:var(--muted); border-bottom:1.5px solid transparent; padding-bottom:3px; font-weight:400; }
+  nav a:hover { color:var(--ink); border-bottom-color:var(--ink); }
+  nav a[aria-current] { color:var(--ink); border-bottom-color:var(--ink); }
+  nav a.join { color:var(--lal); font-weight:600; border-bottom-color:rgba(158,43,37,.35); }
+  nav a.join:hover { border-bottom-color:var(--lal); }
+
+  /* the two-track page: labels in the margin, everything else offset right */
+  main { margin-top:clamp(38px,6vh,64px); }
+  .row { display:grid; grid-template-columns:var(--gutter) minmax(0,1fr); gap:clamp(20px,3vw,44px);
+         margin-top:clamp(34px,5vh,56px); align-items:start; }
+  .row:first-child { margin-top:0; }
+  /* margin labels: faint, right aligned against the text edge, italic, no caps */
+  .lbl { font:400 15px/1.6 'Franklin'; font-style:italic; letter-spacing:0; color:var(--faint);
+         text-align:right; padding-top:3px; }
+  .col { max-width:58ch; }
+  @media (max-width:720px){
+    .row { grid-template-columns:1fr; gap:9px; }
+    .lbl { padding-top:0; }
+  }
+
+  /* the statements sit full width, left of the offset, so the page has two voices */
+  .say { max-width:52ch; }
+  .premise { font:500 clamp(19px,2.3vw,23px)/1.45 'InterTight'; letter-spacing:-.01em; }
+  .mission { margin-top:20px; background:var(--field); border-radius:3px; padding:clamp(20px,2.6vw,28px); max-width:620px; }
+  .mission h1 { font:600 clamp(18px,2vw,21px)/1.5 'InterTight'; letter-spacing:-.012em;
+                color:var(--lal-deep); text-shadow:0 1px 0 rgba(255,255,255,.5); }
+  .close { font:600 clamp(18px,2vw,21px)/1.5 'InterTight'; letter-spacing:-.01em; color:var(--lal-deep); max-width:52ch; }
+
+  p + p { margin-top:15px; }
+  .big { font:500 18px/1.55 'InterTight'; letter-spacing:-.008em; }
+  .turn { font:500 clamp(16.5px,1.7vw,18px)/1.55 'InterTight'; letter-spacing:-.008em; }
+  /* the questions, scattered rather than stacked */
+  .scatter { margin:clamp(20px,2.6vh,28px) 0; }
+  .cue { font:400 14.5px/1.5 'Franklin'; font-style:italic; color:var(--faint); }
+  .q { font:500 clamp(15.5px,1.6vw,17px)/1.32 'InterTight'; letter-spacing:-.01em; color:var(--muted); max-width:44ch; }
+  .q1 { margin-top:9px; margin-left:0; }
+  .q2 { margin-top:7px; margin-left:34%; }
+  .q3 { margin-top:7px; margin-left:11%; }
+  .q4 { margin-top:7px; margin-left:48%; max-width:34ch; }
+  .q5 { margin-top:7px; margin-left:19%; }
+  @media (max-width:720px){ .q { margin-left:0 !important; max-width:none; margin-top:6px; } }
+  .narrow { max-width:58ch; }
+  .narrow + .narrow { margin-top:15px; }
+  /* the three things we do, as cards with a colour marker each */
+  .col.wide { max-width:none; }
+  .cards { margin-top:26px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .card { display:flex; flex-direction:column; border:1px solid var(--hair); border-radius:3px;
+          padding:17px 17px 14px; background:#fff; text-decoration:none; color:var(--ink);
+          transition:background .12s ease, border-color .12s ease, transform .12s ease; }
+  .card:hover { background:var(--wash); border-color:var(--marigold); transform:translateY(-1px); }
+  .card .dot { display:block; width:11px; height:11px; border-radius:50%; }
+  .card b { display:block; margin-top:13px; font:600 16px/1.3 'Inter'; }
+  .card p { margin-top:9px; font:400 14.5px/1.6 'Inter'; color:var(--muted); max-width:none; }
+  .card .out { margin-top:auto; padding-top:14px; display:flex; justify-content:space-between; align-items:baseline;
+               font:600 11px/1.4 'Franklin'; letter-spacing:.14em; text-transform:uppercase; color:var(--faint);
+               transition:color .12s ease; }
+  .card:hover .out { color:var(--lal); }
+  .card .out span:last-child { letter-spacing:0; font-size:13px; transition:transform .12s ease; }
+  .card:hover .out span:last-child { transform:translateX(2px); }
+  @media (max-width:820px){ .cards { grid-template-columns:1fr; gap:12px; } }
+
+  .c1 .dot { background:var(--c1); } .c2 .dot { background:var(--c2); } .c3 .dot { background:var(--c3); }
+  .people { display:grid; gap:6px; margin-top:14px; }
+  .people .who { display:grid; grid-template-columns:minmax(150px,.42fr) 1fr; gap:18px; align-items:baseline; }
+  .people .rl { color:var(--muted); }
+  .status { font-size:13.5px; color:var(--muted); }
+  @media (max-width:560px){ .people .who { grid-template-columns:1fr; gap:2px; } }
+
+
+  footer { margin-top:clamp(56px,8vh,88px); border-top:1px solid var(--hair); padding-top:16px;
+           font-size:12.5px; color:var(--muted); display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+  footer a { font-size:12.5px; font-weight:500; border-bottom-width:1px; }
+
+
+  /* the gate: the old holding page, kept exactly as it was.
+     the site behind it appears when someone presses ; (or taps the mark) */
+  html.locked, html.locked body { overflow:hidden; height:100%; }
+  html.locked .page { visibility:hidden; }
+  html:not(.locked) .gate { display:none; }
+  .gate { position:fixed; inset:0; z-index:999; cursor:default;
+          background:radial-gradient(circle at 50% 40%, #ffffff 0%, #e6e6e6 100%);
+          display:flex; align-items:center; justify-content:center; transition:opacity .4s ease; }
+  .gate .mark { font-family:"EB Garamond", Georgia, serif; font-style:normal; font-weight:400;
+                color:#191919; font-size:clamp(1.5rem, 5vw, 3.5rem); line-height:1;
+                -webkit-user-select:none; user-select:none; }
+  .gate.out { opacity:0; pointer-events:none; }
+  @media (prefers-reduced-motion:reduce){ .gate { transition:none; } }
+</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='72' font-family='EB Garamond, serif' font-size='90' text-anchor='middle' fill='%23191919'%3E;%3C/text%3E%3C/svg%3E">
+  <noscript><style>html.locked .page { visibility:visible; } .gate { display:none; }</style></noscript>
+</head>
+<body>
+<div class="gate" id="gate" role="button" tabindex="0" aria-label="Enter">
+  <span class="mark">;</span>
+</div>
+<div class="page">
+
+  <header>
+    <a class="wm" href="index.html"><b>semicolon<i>;</i></b></a>
+    <p class="tag">a pakistani research collective</p>
+    <div class="rule"></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="#">Work</a>
+      <a class="join" href="#join">Join us</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="row">
+      <p class="lbl">Mission</p>
+      <div class="col say">
+        <p class="premise">A lack of direction comes from a lack of understanding.</p>
+        <div class="mission">
+          <h1>To move forward, as a democracy, Pakistan must study itself: its society, its institutions and its values. Then recognize its failures, realize its responsibilities, and build its ideals.</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="lbl">What we do</p>
+      <div class="col wide">
+        <p class="turn">We study Pakistan through what we are told: the news, the bulletins, the dramas, the textbooks, the magazines, the debates in parliament, and anything else that shapes what we come to believe.</p>
+        <div class="cards">
+          <a class="card c1" href="#">
+            <span class="dot"></span>
+            <b>Collect</b>
+            <p>We gather what the country says and keep it: broadcasts, newspapers, textbooks, magazines, the record of parliament. The archives are published so anyone can work from them.</p>
+            <span class="out"><span>Data</span><span>&#8594;</span></span>
+          </a>
+          <a class="card c2" href="#">
+            <span class="dot"></span>
+            <b>Describe</b>
+            <p>Then we say plainly what the record shows: who says what, what spreads, what is left out, and how all of it shifts over time. The methods are published beside the numbers.</p>
+            <span class="out"><span>Reports</span><span>&#8594;</span></span>
+          </a>
+          <a class="card c3" href="#">
+            <span class="dot"></span>
+            <b>Argue</b>
+            <p>Description is where we start, not where we stop. With a record in hand we can argue about what Pakistan's information should be, and what we owe each other inside it.</p>
+            <span class="out"><span>Arguments</span><span>&#8594;</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="lbl">Why</p>
+      <div class="col wide">
+        <p class="big">Daily, 240 million Pakistanis consume hours of information from news channels, TV, social media, YouTube, the internet. The information we consume shapes how we think, what we believe in, and how we act. Pakistan's information ecosystem is rapidly evolving and is severely understudied, and any understanding we have is borrowed from mismatched Western metrics and frameworks.</p>
+
+        <div class="scatter">
+          <p class="cue">For example.</p>
+          <p class="q q1">What are the news television anchors saying?</p>
+          <p class="q q2">How are they framing news, favourable or against the establishment?</p>
+          <p class="q q3">Do the news media outlets present vastly different information?</p>
+          <p class="q q4">What are people saying on social media platforms?</p>
+          <p class="q q5">How did Pakistan do discourse on important issues before digital media?</p>
+        </div>
+
+        <p class="narrow">These questions remain unanswered not because there is no interest, but because the intellectual and data infrastructure that collects and examines at large scales the state of Pakistan's information culture does not exist.</p>
+        <p class="narrow">We, at semicolon, work towards understanding the information ecosystem of Pakistan. How individual citizens consume, exhibit and adopt beliefs, through modern information systems and without them.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="lbl">Goal</p>
+      <div class="col">
+        <p class="close">The goal is to study ourselves with knowledge made from within, and to argue from it a better future.</p>
+      </div>
+    </div>
+
+    <div class="row" id="join">
+      <p class="lbl">Join us</p>
+      <div class="col">
+        <p>This is a small collective, and it is meant to be joined. We are two people with more questions than hands, and the work is built to be picked up by other people. If you want to work on any of this, write to us.</p>
+        <p style="margin-top:14px"><a href="mailto:hello@semicolon.pk">hello@semicolon.pk</a></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="lbl">Status</p>
+      <div class="col">
+        <p class="status">Draft, 28 July 2026. The Urdu version needs a native read before it ships.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>semicolon; · semicolon.pk · draft</span>
+    <a href="index.html">the homepage</a>
+    
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var KEY = 'semicolon-open', root = document.documentElement, gate = document.getElementById('gate');
+  function open() {
+    try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    root.classList.remove('locked');
+    gate.classList.add('out');
+    setTimeout(function () { if (gate.parentNode) gate.parentNode.removeChild(gate); }, 400);
+  }
+  try { if (sessionStorage.getItem(KEY) === '1') { root.classList.remove('locked');
+        if (gate.parentNode) gate.parentNode.removeChild(gate); return; } } catch (e) {}
+  addEventListener('keydown', function (e) { if (e.key === ';') open(); });
+  gate.addEventListener('click', open);
+  gate.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+})();
+</script>
+</body>
+</html>
