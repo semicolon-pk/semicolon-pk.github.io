@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>semicolon; a pakistani research collective</title>
 <meta name="description" content="We measure Pakistan's information system and trace how power moves through it.">
 <style>
@@ -22,6 +25,7 @@
     --ground:#FFFFFF; --ink:#2B2A27; --muted:rgba(43,42,39,.5); --faint:rgba(43,42,39,.32); --hair:rgba(43,42,39,.14);
     --lal:#9E2B25; --lal-hover:#7E1F1A; --lal-deep:#701E19;
     --marigold:#E0A93C; --marigold-rgb:224,169,60; --field:#F2DEB0; --wash:#FBF6EC;
+    --c1:#9E2B25; --c2:#E0A93C; --c3:#3D52B8;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { -webkit-text-size-adjust:100%; }
@@ -67,10 +71,20 @@
   .answer h1 a { color:var(--lal); border-bottom:2px solid var(--lal); text-shadow:none; font-weight:600; }
   .answer h1 a:hover { color:var(--lal-hover); border-bottom-color:var(--lal-hover); }
   .answer > a { display:inline-block; margin-top:16px; font-size:14.5px; }
+
+  /* the three pillars: small chips under the answer block */
+  .pill-row { margin-top:12px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .pill { display:flex; align-items:center; gap:8px; border:1px solid var(--hair); border-radius:3px;
+          padding:9px 11px; background:#fff; font:600 12.5px/1.25 'Inter'; color:var(--ink);
+          transition:background .12s ease, border-color .12s ease, transform .12s ease; }
+  .pill:hover { background:var(--wash); border-color:var(--marigold); color:var(--ink); transform:translateY(-1px); }
+  .pill .sw { width:10px; height:10px; border-radius:2px; flex:none; }
+  .pill.p1 .sw { background:var(--c1); } .pill.p2 .sw { background:var(--c2); } .pill.p3 .sw { background:var(--c3); }
   @media (max-width:760px){
     .hero { grid-template-columns:1fr; }
-    .answer { max-width:520px; margin-left:auto; }
+    .answer-wrap { max-width:520px; margin-left:auto; width:100%; }
   }
+  @media (max-width:420px){ .pill-row { grid-template-columns:1fr; } }
 
   /* the source buttons: boxes that invite a click */
   .sources { margin-top:clamp(40px,6vh,64px); }
@@ -90,7 +104,7 @@
   @media (max-width:560px){ .cards { grid-template-columns:1fr; } }
 
   /* join */
-  .join-block { margin-top:clamp(44px,7vh,72px); background:var(--wash); border-radius:3px;
+  .join-block { margin-top:clamp(44px,7vh,72px); background:var(--field); border-radius:3px;
                 padding:clamp(20px,2.6vw,28px); display:flex; gap:18px; align-items:baseline;
                 justify-content:space-between; flex-wrap:wrap; }
   .join-block p { font:500 clamp(17px,1.9vw,19px)/1.45 'InterTight'; letter-spacing:-.008em; max-width:48ch; }
@@ -100,7 +114,6 @@
            font-size:12.5px; color:var(--muted); display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
   footer a { font-size:12.5px; font-weight:500; border-bottom-width:1px; }
 </style>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='72' font-family='EB Garamond, Georgia, serif' font-size='90' text-anchor='middle' fill='%239E2B25'%3E;%3C/text%3E%3C/svg%3E">
 </head>
 <body>
 <a class="skip" href="#sources">Skip to what we read</a>
@@ -125,9 +138,16 @@
         <p>Who decides what we hear?</p>
         <p>What does power want us to think?</p>
       </div>
-      <div class="answer">
-        <h1>We measure Pakistan's <a href="#sources">information system</a> and trace how power moves through it.</h1>
-        <a href="about.html">How we work</a>
+      <div class="answer-wrap">
+        <div class="answer">
+          <h1>We measure Pakistan's <a href="#sources">information system</a> and trace how power moves through it.</h1>
+          <a href="about.html">How we work</a>
+        </div>
+        <div class="pill-row" aria-label="The three pillars">
+          <a class="pill p1" href="about.html#archive"><span class="sw"></span>Archive discourse</a>
+          <a class="pill p2" href="about.html#study"><span class="sw"></span>Study the system</a>
+          <a class="pill p3" href="about.html#ideals"><span class="sw"></span>Build ideals</a>
+        </div>
       </div>
     </div>
 
@@ -169,7 +189,7 @@
     </div>
 
     <div class="join-block" id="join">
-      <p>Be part of the collective. Come work on Pakistan's information system with us.</p>
+      <p>Come join us; be a part of the collective.</p>
       <a href="mailto:hello@semicolon.pk">Join us</a>
     </div>
   </main>
@@ -177,7 +197,6 @@
   <footer>
     <span>semicolon; · semicolon.pk · draft</span>
     <a href="about.html">about</a>
-    
   </footer>
 
 </div>
