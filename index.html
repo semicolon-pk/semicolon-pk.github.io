@@ -96,11 +96,9 @@
 
   /* the source buttons: boxes that invite a click. the top edge carries the archive's
      figure color, so the row doubles as the legend those archives keep in every chart.
-     the row breaks the 880 frame, the way the pillar row does on about, because each
-     card now carries several questions rather than one. */
-  .sources { --sw:min(1240px, calc(100vw - 2*clamp(22px,4vw,48px)));
-             width:var(--sw); margin:clamp(78px,12vh,144px) 0 0 calc((100% - var(--sw))/2); }
-  .cards { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+     three across, then two: five narrow columns could not hold several questions each. */
+  .sources { margin-top:clamp(78px,12vh,144px); }
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
   .card { display:flex; flex-direction:column; border:1px solid var(--hair); border-top:3px solid var(--k);
           border-radius:3px; padding:13px 15px; color:var(--ink); font-weight:400; text-decoration:none;
           background:#fff; transition:background .12s ease, border-color .12s ease, transform .12s ease; }
@@ -114,8 +112,8 @@
   .card:hover .go { color:var(--k); transform:translateX(2px); }
   /* the categorical figure palette, fixed order, one archive each */
   .k1 { --k:#9E2B25; } .k2 { --k:#00919B; } .k3 { --k:#C08A10; } .k4 { --k:#3D52B8; } .k5 { --k:#A15A1E; }
-  @media (max-width:900px){ .cards { grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:560px){ .cards { grid-template-columns:1fr; } }
+  @media (max-width:760px){ .cards { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .cards { grid-template-columns:1fr; } }
 
   /* join */
   .join-block { margin-top:clamp(44px,7vh,72px); background:var(--field); border-radius:3px;
