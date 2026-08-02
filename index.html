@@ -66,11 +66,11 @@
   .lede { font:600 clamp(23px,3vw,32px)/1.32 'InterTight'; letter-spacing:-.014em;
           color:var(--ink); max-width:26ch; margin-right:auto; }
   .lede a { white-space:nowrap; }   /* the accent phrase never breaks across lines */
-  /* the tail: the three pillars and the door share one line, pillars left, button right.
-     wraps to two lines when the frame cannot hold both, button staying right. */
+  /* the tail: the door leads, the three pillars follow it along one line.
+     wraps to two lines when the frame cannot hold both, door staying on top. */
   .tail { margin-top:clamp(20px,2.8vh,28px); display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+  .tail .more { margin:0; flex:none; }
   .tail .pillars { margin-top:0; flex:1 1 380px; }
-  .tail .more { margin:0 0 0 auto; }
   /* below this the chips start wrapping their own labels, so give them the whole row
      and let the button drop to a second line, still right */
   @media (max-width:860px){ .tail .pillars { flex-basis:100%; } }
@@ -145,15 +145,15 @@
     <div class="hero">
       <h1 class="lede">we measure Pakistan's <a href="#sources">information system</a> and trace how power moves through it.</h1>
       <div class="why">
-        <p>to move forward, Pakistan must study itself: its society, its institutions and its values. then recognize its failures, realize its responsibilities, and build its ideals.</p>
+        <p>to move forward, Pakistan must study itself: its institutions, its society and its state; then recognize the failures, realize their responsibilities, and construct ideals.</p>
       </div>
       <div class="tail">
+        <a class="more" href="about.html">how we work</a>
         <div class="pillars" aria-label="the three pillars">
           <a class="pill p1" href="about.html#archive"><span class="sw"></span>archive discourse</a>
           <a class="pill p2" href="about.html#study"><span class="sw"></span>study the system</a>
           <a class="pill p3" href="about.html#ideals"><span class="sw"></span>build ideals</a>
         </div>
-        <a class="more" href="about.html">how we work</a>
       </div>
     </div>
 
