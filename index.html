@@ -95,8 +95,11 @@
   .more:hover { background:var(--lal-hover); color:#fff; }
 
   /* the source buttons: boxes that invite a click. the top edge carries the archive's
-     figure color, so the row doubles as the legend those archives keep in every chart. */
-  .sources { margin-top:clamp(78px,12vh,144px); }
+     figure color, so the row doubles as the legend those archives keep in every chart.
+     the row breaks the 880 frame, the way the pillar row does on about, because each
+     card now carries several questions rather than one. */
+  .sources { --sw:min(1240px, calc(100vw - 2*clamp(22px,4vw,48px)));
+             width:var(--sw); margin:clamp(78px,12vh,144px) 0 0 calc((100% - var(--sw))/2); }
   .cards { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
   .card { display:flex; flex-direction:column; border:1px solid var(--hair); border-top:3px solid var(--k);
           border-radius:3px; padding:13px 15px; color:var(--ink); font-weight:400; text-decoration:none;
@@ -104,7 +107,8 @@
   .card:hover { background:var(--wash); border-color:var(--marigold); border-top-color:var(--k); transform:translateY(-1px); }
   .card svg { display:block; margin-bottom:11px; color:var(--k); }
   .card b { display:block; font:600 13.5px/1.3 'Inter'; margin-bottom:7px; }
-  .card p { font:500 14.5px/1.5 'InterTight'; color:var(--muted); }
+  .card p { font:500 13.5px/1.45 'InterTight'; color:var(--muted); }
+  .card p + p { margin-top:8px; padding-top:8px; border-top:1px solid rgba(43,42,39,.07); }
   .card .go { margin-top:auto; padding-top:12px; font:600 13px/1 'Franklin'; color:var(--faint);
               display:flex; justify-content:flex-end; transition:color .12s ease, transform .12s ease; }
   .card:hover .go { color:var(--k); transform:translateX(2px); }
@@ -163,25 +167,25 @@
           <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="1" y="1" width="24" height="15"/><path d="M9 21l4-5 4 5"/>
           </svg>
-          <b>tv news</b><p>what did the nine o'clock bulletin choose to say?</p><span class="go">&#8594;</span>
+          <b>tv news</b><p>how does the media frame certain issues?</p><p>what biases are apparent?</p><p>where do different outlets diverge?</p><p>what should be the media's responsibilities?</p><span class="go">&#8594;</span>
         </a>
         <a class="card k2" href="#">
           <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <path d="M1 1h16v11H6l-5 4z"/><path d="M21 6h4v11l-4-3"/>
           </svg>
-          <b>social media</b><p>what spreads before anyone can check it?</p><span class="go">&#8594;</span>
+          <b>social media</b><p>does discourse on the platforms follow what is on tv?</p><p>what are Pakistanis engaging with online?</p><span class="go">&#8594;</span>
         </a>
         <a class="card k3" href="#">
           <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <path d="M1 1h18v20H1z"/><path d="M19 6h6v15h-6"/><path d="M5 6h10M5 10h10M5 14h10"/>
           </svg>
-          <b>newspapers</b><p>what made the front page, and what never did?</p><span class="go">&#8594;</span>
+          <b>newspapers</b><p>what issues are given valuable space?</p><p>what bias and frames are used for minority groups?</p><span class="go">&#8594;</span>
         </a>
         <a class="card k4" href="#">
           <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="1" y="3" width="6" height="18"/><rect x="9" y="1" width="6" height="20"/><rect x="17" y="5" width="6" height="16"/>
           </svg>
-          <b>books</b><p>what are children taught to believe?</p><span class="go">&#8594;</span>
+          <b>books</b><p>what are children taught to believe?</p><p>what are the biases within the textbooks?</p><span class="go">&#8594;</span>
         </a>
         <a class="card k5" href="#">
           <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -189,7 +193,7 @@
             <circle cx="4" cy="12" r="1.6"/><circle cx="11" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/>
             <path d="M1 19h24"/>
           </svg>
-          <b>parliament debates</b><p>what does power say in its own words?</p><span class="go">&#8594;</span>
+          <b>parliament debates</b><p>what issues is the parliament talking about?</p><p>how have their stances changed over the years?</p><span class="go">&#8594;</span>
         </a>
       </div>
     </div>
